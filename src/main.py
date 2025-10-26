@@ -1,4 +1,3 @@
-import recognize
 import database
 import sys
 
@@ -16,7 +15,8 @@ def main():
         student_id = input("Enter student id: ")
         database.remove_student(student_id)
     elif command == "start":
-        recognize.recognize_face()
+        import recognize
+        recognize.recognize_face_24_7()
 
 if __name__ == "__main__":
     main()
