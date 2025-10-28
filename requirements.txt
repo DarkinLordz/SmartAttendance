@@ -1,4 +1,5 @@
-opencv-python==4.12.0.88
-numpy==2.2.6
-deepface==0.0.95
-tf-keras==2.20.1
+opencv-python
+numpy
+deepface
+tf-keras
+playsound

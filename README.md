@@ -21,3 +21,30 @@
   ```bash
   pip install -r requirements.txt
   ```
+
+### **Commands**
+- Add:
+  ```bash
+  python src/main.py add
+  ```
+- Remove:
+  ```bash
+  python src/main.py remove
+  ```
+- Start:
+  ```bash
+  python src/main.py start
+  ```
+
+---
+
+## **How It Works**
+
+Start by adding students to your local database.
+When you run the program for the first time, It will install an offline AI model called "ArcFace"
+Start by adding students to your database by commands shown above.
+Make sure all pictures of students you add are inside "data/face/"
+Once done, check your local database in "data/student.csv"
+Start the program using commands shown above.
+The program will keep the attendance database forever unless you delete it manually.
+The database will write absent students in the end of the day. You may know wether a student was absent or not by checking if they have "student_time" row empty. If so, the student was absent for the day.
