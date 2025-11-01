@@ -90,3 +90,6 @@ def recognize_face():
 
     cam.release()
     cv2.destroyAllWindows()
+
+if __name__ == "__main__":
+    recognize_face()

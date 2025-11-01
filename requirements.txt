@@ -3,3 +3,4 @@ numpy
 deepface
 tf-keras
 playsound
+customtkinter
