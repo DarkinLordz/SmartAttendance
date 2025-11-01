@@ -1,5 +1,4 @@
 import customtkinter as ctk
-import threading
 import database
 
 class SmartAttendance(ctk.CTk):
@@ -7,7 +6,7 @@ class SmartAttendance(ctk.CTk):
     def __init__(self):
         super().__init__()
         self.title("SmartAttendance")
-        self.geometry("500x350")
+        self.geometry("500x300")
         ctk.set_appearance_mode("dark")
         ctk.set_default_color_theme("blue")
         
@@ -34,9 +33,6 @@ class SmartAttendance(ctk.CTk):
 
         self.remove_button = ctk.CTkButton(self.remove_frame, text="Remove Student", fg_color="red", command=self.remove_student)
         self.remove_button.pack(pady=10)
-
-        self.start_button = ctk.CTkButton(self, text="Start Recognition", command=self.start_recognition)
-        self.start_button.pack(pady=20)
 
         self.status_label = ctk.CTkLabel(self, text="", text_color="lightgreen", font=("Arial", 13))
         self.status_label.pack(pady=10)
@@ -68,13 +64,6 @@ class SmartAttendance(ctk.CTk):
         self.status_label.configure(text=f"Removed student with ID: {student_id}", text_color="orange")
 
         self.remove_id_entry.delete(0, "end")
-
-    def start_recognition(self):
-        self.status_label.configure(text="Starting recognition...", text_color="lightblue")
-        self.update_idletasks()
-        import recognize
-        threading.Thread(target=recognize.recognize_face, daemon=True).start()
-
 
 if __name__ == "__main__":
     app = SmartAttendance()

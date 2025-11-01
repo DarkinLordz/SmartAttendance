@@ -58,6 +58,8 @@ def recognize_face():
         if not ret:
             continue
 
+        cv2.imshow("Camera", frame)
+
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         faces = face_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5)
 
