@@ -1,4 +1,4 @@
-from path import FACE_DIR, RECOGNIZE_WAV
+from path import FACES_DIR, RECOGNIZE_WAV
 from deepface import DeepFace
 import database
 import sound
@@ -14,7 +14,7 @@ def load_student_embeddings():
         student_images = student["student_face"]
         student_embeds = []
         for img_name in student_images if isinstance(student_images, list) else [student_images]:
-            img_path = os.path.join(FACE_DIR, img_name)
+            img_path = os.path.join(FACES_DIR, img_name)
             if os.path.exists(img_path):
                 try:
                     embed = DeepFace.represent(img_path=img_path, model_name='ArcFace', enforce_detection=True)
