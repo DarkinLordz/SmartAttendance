@@ -1,10 +1,12 @@
 import customtkinter as ctk
 import database
+from log import logger
 
 class SmartAttendance(ctk.CTk):
 
     def __init__(self):
         super().__init__()
+        logger.info("SmartAttendance GUI started")
         self.title("SmartAttendance")
         self.geometry("500x300")
         ctk.set_appearance_mode("dark")
@@ -42,13 +44,17 @@ class SmartAttendance(ctk.CTk):
         sclass = self.class_entry.get().strip()
         face = self.face_entry.get().strip()
 
+        logger.debug(f"Add student requested: name={name}, class={sclass}, face={face}")
+
         if not name or not sclass or not face:
             self.status_label.configure(text="Please fill all fields.", text_color="red")
+            logger.warning("Add student failed: missing fields")
             return
 
         student_id = database.generate_student_id()
         database.add_student(student_id, name, sclass, face)
         self.status_label.configure(text=f"Student added successfully! ID: {student_id}", text_color="lightgreen")
+        logger.info(f"Student added via GUI: {student_id}, {name}")
 
         self.name_entry.delete(0, "end")
         self.class_entry.delete(0, "end")
@@ -56,12 +62,15 @@ class SmartAttendance(ctk.CTk):
 
     def remove_student(self):
         student_id = self.remove_id_entry.get().strip()
+        logger.debug(f"Remove student requested: id={student_id}")
         if not student_id:
             self.status_label.configure(text="Please enter a student ID.", text_color="red")
+            logger.warning("Remove student failed: missing ID")
             return
 
         database.remove_student(student_id)
         self.status_label.configure(text=f"Removed student with ID: {student_id}", text_color="orange")
+        logger.info(f"Student removed via GUI: {student_id}")
 
         self.remove_id_entry.delete(0, "end")
 
