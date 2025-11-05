@@ -1,6 +1,6 @@
-# Smart Attendance
+# SmartAttendance
 
-**Smart Attendance** is an AI-powered school attendance system designed to automatically detect and recognize students using facial recognition. It aims to make attendance tracking faster, more reliable, and fully digital, reducing manual errors and administrative workload.
+**SmartAttendance** is an AI-powered school attendance system designed to automatically detect and recognize students using facial recognition. It aims to make attendance tracking faster, more reliable, and fully digital, reducing manual errors and administrative workload.
 
 ---
 
