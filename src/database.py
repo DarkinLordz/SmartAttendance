@@ -5,7 +5,7 @@ import os
 from log import logger
 
 def timestamp():
-    t = time.strftime("%Y/%m/%d/%H/%M/%S", time.localtime())
+    t = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
     logger.debug(f"Generated timestamp: {t}")
     return t
 
