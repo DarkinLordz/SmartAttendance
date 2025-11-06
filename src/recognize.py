@@ -68,13 +68,12 @@ def recognize_face():
             logger.warning("Failed to read frame from camera")
             continue
 
-        cv2.imshow("Camera", frame)
-
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         faces = face_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5)
         logger.debug(f"Detected {len(faces)} faces")
 
         for (x, y, w, h) in faces:
+            cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
             face_img = frame[y:y+h, x:x+w]
 
             try:
@@ -100,6 +99,7 @@ def recognize_face():
                         sound.play(RECOGNIZE_WAV)
                     except Exception as e:
                         logger.error(f"Failed to play recognition sound: {e}")
+        cv2.imshow("Camera", frame)
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
             logger.info("Quitting face recognition loop")
