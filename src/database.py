@@ -29,6 +29,33 @@ def generate_student_id():
     logger.debug(f"Generated new student ID: {new_id}")
     return new_id
 
+def add_student(student_id, student_name, student_class, student_face):
+    logger.debug(f"Adding student: {student_id}, {student_name}")
+    file_exists = os.path.exists(STUDENTS_CSV)
+    with open(STUDENTS_CSV, "a", newline="", encoding="utf-8") as file:
+        fieldnames = ["student_id", "student_name", "student_class", "student_face"]
+        writer = csv.DictWriter(file, fieldnames=fieldnames)
+        if not file_exists:
+            writer.writeheader()
+        writer.writerow({
+            "student_id": student_id,
+            "student_name": student_name,
+            "student_class": student_class,
+            "student_face": student_face
+        })
+    logger.info(f"Student added: {student_id}, {student_name}")
+
+def remove_student(student_id):
+    logger.debug(f"Removing student: {student_id}")
+    student_id = int(student_id)
+    students = [s for s in get_all_students() if s['student_id'] != student_id]
+    with open(STUDENTS_CSV, "w", newline="", encoding="utf-8") as file:
+        fieldnames = ["student_id", "student_name", "student_class", "student_face"]
+        writer = csv.DictWriter(file, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(students)
+    logger.info(f"Student removed: {student_id}")
+
 def mark_attendance(student, logged_today):
     logger.debug(f"Marking attendance for student: {student['student_id']}")
     if student["student_id"] in logged_today:
@@ -65,30 +92,3 @@ def write_absent_students(all_students, logged_today):
             "student_time": ""
         } for s in absent)
     logger.info(f"Wrote {len(absent)} absent students")
-
-def add_student(student_id, student_name, student_class, student_face):
-    logger.debug(f"Adding student: {student_id}, {student_name}")
-    file_exists = os.path.exists(STUDENTS_CSV)
-    with open(STUDENTS_CSV, "a", newline="", encoding="utf-8") as file:
-        fieldnames = ["student_id", "student_name", "student_class", "student_face"]
-        writer = csv.DictWriter(file, fieldnames=fieldnames)
-        if not file_exists:
-            writer.writeheader()
-        writer.writerow({
-            "student_id": student_id,
-            "student_name": student_name,
-            "student_class": student_class,
-            "student_face": student_face
-        })
-    logger.info(f"Student added: {student_id}, {student_name}")
-
-def remove_student(student_id):
-    logger.debug(f"Removing student: {student_id}")
-    student_id = int(student_id)
-    students = [s for s in get_all_students() if s['student_id'] != student_id]
-    with open(STUDENTS_CSV, "w", newline="", encoding="utf-8") as file:
-        fieldnames = ["student_id", "student_name", "student_class", "student_face"]
-        writer = csv.DictWriter(file, fieldnames=fieldnames)
-        writer.writeheader()
-        writer.writerows(students)
-    logger.info(f"Student removed: {student_id}")
