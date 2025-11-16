@@ -6,7 +6,7 @@
 
 ## **Features**
 
-- **Real-time face recognition**: Detects and identifies students as they enter the classroom.
+- **Real-time face recognition**: Detects and identifies students.
 - **Automated attendance logging**: Marks attendance in the local database automatically.
 - **Student database management**: Add, remove, and update student information and facial data.
 - **High reliability**: Works best when students pause in front of the camera for accurate recognition.
