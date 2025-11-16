@@ -15,4 +15,4 @@ STUDENTS_CSV = os.path.join(DATA_DIR, "students.csv")
 
 RECOGNIZE_WAV = os.path.join(SOUNDS_DIR, "recognize.wav")
 
-EVENTS_LOG = os.path.join(LOGS_DIR, "events.log")
+SYSTEM_LOG = os.path.join(LOGS_DIR, "system.log")
