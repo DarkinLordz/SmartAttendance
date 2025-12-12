@@ -34,7 +34,7 @@ def load_student_embeddings():
     logger.debug(f"Loaded embeddings for {len(embeddings)} students")
     return embeddings
 
-def is_match(embedding1, embedding2, threshold=0.60):
+def is_match(embedding1, embedding2, threshold=0.70):
     cos_sim = numpy.dot(embedding1, embedding2.T) / (numpy.linalg.norm(embedding1) * numpy.linalg.norm(embedding2))
     logger.debug(f"Cosine similarity: {cos_sim}, threshold: {threshold}")
     return cos_sim >= threshold
