@@ -2,6 +2,6 @@ opencv-python
 numpy
 deepface
 tf-keras
-playsound
+playsound==1.2.2
 customtkinter
 pywin32
