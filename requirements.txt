@@ -5,3 +5,4 @@ tf-keras
 playsound==1.2.2
 customtkinter
 pywin32
+pygame
