@@ -1,5 +1,5 @@
-import win32com.client
-import sys
+import win32com.client # This only works on windows, don't try on linux
+import sys # I expect linux users to know how to create shortcuts, so I won't add support for it.
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "src"))
 from path import SRC_DIR, STUDENTS_CSV, ATTENDANCE_CSV, FACES_DIR
