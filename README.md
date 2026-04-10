@@ -16,8 +16,5 @@
 ## **Getting Started**
 
 ### **Prerequisites**
-- Python 3.8+
-- Libraries:
-  ```bash
-  pip install -r requirements.txt
-  ```
+- Python 3.12 is recommended.
+- Python 3.14 is not supported by the current DeepFace/TensorFlow stack used by this project.
