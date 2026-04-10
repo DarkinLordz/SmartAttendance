@@ -3,5 +3,5 @@ numpy
 deepface
 tf-keras
 customtkinter
-pywin32
+pyshortcuts
 pygame

@@ -1,22 +1,34 @@
-import win32com.client # This only works on windows, don't try on linux
-import sys # I expect linux users to know how to create shortcuts, so I won't add support for it.
-import os
-sys.path.append(os.path.join(os.path.dirname(__file__), "..", "src"))
-from path import SRC_DIR, STUDENTS_CSV, ATTENDANCE_CSV, FACES_DIR
+import sys
+from pathlib import Path
+from pyshortcuts import make_shortcut
 
-def create_shortcut(target_path, shortcut_name):
-    desktop = os.path.join(os.path.expanduser("~"), "Desktop")
-    shortcut_path = os.path.join(desktop, f"{shortcut_name}.lnk")
+BASE_DIR = Path(__file__).resolve().parent.parent
+SRC_DIR = BASE_DIR / "src"
 
-    shell = win32com.client.Dispatch("WScript.Shell")
-    shortcut = shell.CreateShortcut(shortcut_path)
-    shortcut.Targetpath = target_path
-    shortcut.WorkingDirectory = os.path.dirname(target_path)
-    shortcut.IconLocation = target_path
-    shortcut.save()
+sys.path.append(str(SRC_DIR))
+try:
+    from path import STUDENTS_CSV, ATTENDANCE_CSV, FACES_DIR
+except ImportError:
+    print("Error: Could not find path.py in src directory.")
+    sys.exit(1)
 
-create_shortcut(FACES_DIR, "FACES")
-create_shortcut(STUDENTS_CSV, "STUDENTS")
-create_shortcut(ATTENDANCE_CSV, "ATTENDANCE")
-create_shortcut(os.path.join(SRC_DIR, "gui.pyw"), "GUI")
-create_shortcut(os.path.join(SRC_DIR, "recognize.py"), "START")
+links = {
+    "Faces": FACES_DIR,
+    "Students": STUDENTS_CSV,
+    "Attendance": ATTENDANCE_CSV,
+    "Gui": SRC_DIR / "gui.pyw",
+    "Start": SRC_DIR / "recognize.py"
+}
+
+def build_shortcuts():
+    for name, target in links.items():
+        target_path = Path(target)
+        
+        if target_path.exists():
+            make_shortcut(str(target_path), name=name, terminal=False)
+            print(f"Created shortcut for {name}")
+        else:
+            print(f"Warning: Target {target_path} not found. Skipping.")
+
+if __name__ == "__main__":
+    build_shortcuts()
