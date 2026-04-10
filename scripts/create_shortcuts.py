@@ -21,14 +21,21 @@ links = {
 }
 
 def build_shortcuts():
+    Path.home().joinpath("Desktop").mkdir(parents=True, exist_ok=True)
+
     for name, target in links.items():
-        target_path = Path(target)
+        t_path = Path(target)
         
-        if target_path.exists():
-            make_shortcut(str(target_path), name=name, terminal=False)
+        if t_path.exists():
+            if t_path.suffix in ['.py', '.pyw']:
+                cmd = f'"{sys.executable}" "{t_path}"'
+            else:
+                cmd = f'"{t_path}"'
+
+            make_shortcut(cmd, name=name, terminal=False)
             print(f"Created shortcut for {name}")
         else:
-            print(f"Warning: Target {target_path} not found. Skipping.")
+            print(f"Warning: Target {t_path} not found. Skipping.")
 
 if __name__ == "__main__":
     build_shortcuts()
