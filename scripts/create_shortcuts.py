@@ -30,7 +30,7 @@ def build_shortcuts():
             if t_path.suffix in ['.py', '.pyw']:
                 cmd = f'"{sys.executable}" "{t_path}"'
             else:
-                cmd = f'"{t_path}"'
+                cmd = f'start "" "{t_path}"'
 
             make_shortcut(cmd, name=name, terminal=False)
             print(f"Created shortcut for {name}")
