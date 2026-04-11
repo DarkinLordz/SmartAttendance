@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="description"
+        content="SmartAttendance is a local AI-powered attendance system that recognizes students, logs attendance, and keeps school check-ins organized."
+    >
+    <title>SmartAttendance</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="page-shell">
+        <header class="site-header">
+            <a class="brand" href="#top">SmartAttendance</a>
+            <nav class="site-nav" aria-label="Primary">
+                <a href="#features">Features</a>
+                <a href="#workflow">Workflow</a>
+                <a href="#stack">Stack</a>
+            </nav>
+        </header>
+
+        <main id="top">
+            <section class="hero">
+                <div class="hero-copy">
+                    <p class="eyebrow">AI-powered attendance for schools</p>
+                    <h1>Make morning check-in feel less manual and more dependable.</h1>
+                    <p class="hero-text">
+                        SmartAttendance is a desktop-first project that combines face recognition,
+                        student record management, and automatic CSV logging in one practical workflow.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a class="button button-primary" href="#workflow">See the workflow</a>
+                        <a class="button button-secondary" href="#stack">Explore the stack</a>
+                    </div>
+
+                    <div class="hero-pills" aria-label="Project highlights">
+                        <span>Desktop GUI</span>
+                        <span>Local CSV data</span>
+                        <span>Webcam recognition</span>
+                    </div>
+                </div>
+
+                <div class="hero-panel">
+                    <div class="status-card">
+                        <p class="panel-label">Live routine</p>
+                        <h2>Recognition loop ready</h2>
+                        <ul class="status-list">
+                            <li><span class="dot dot-live"></span>Camera stream opened</li>
+                            <li><span class="dot"></span>Face detected in frame</li>
+                            <li><span class="dot"></span>Embedding matched against roster</li>
+                            <li><span class="dot dot-accent"></span>Attendance written to CSV</li>
+                        </ul>
+                    </div>
+
+                    <div class="module-card">
+                        <p class="panel-label">Project snapshot</p>
+                        <div class="module-row">
+                            <span>src/gui.pyw</span>
+                            <span>Student management</span>
+                        </div>
+                        <div class="module-row">
+                            <span>src/recognize.py</span>
+                            <span>Recognition loop</span>
+                        </div>
+                        <div class="module-row">
+                            <span>data/attendance.csv</span>
+                            <span>Attendance history</span>
+                        </div>
+                        <div class="module-row">
+                            <span>logs/system.log</span>
+                            <span>Runtime trace</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="features">
+                <div class="section-heading">
+                    <p class="eyebrow">Core features</p>
+                    <h2>Built around the actual flow of the project.</h2>
+                </div>
+
+                <div class="feature-grid">
+                    <article class="feature-card">
+                        <h3>Face recognition</h3>
+                        <p>
+                            Webcam frames are analyzed and compared against stored student face
+                            embeddings so recognized students can be identified during check-in.
+                        </p>
+                    </article>
+
+                    <article class="feature-card">
+                        <h3>Attendance logging</h3>
+                        <p>
+                            Confirmed matches are written to a local attendance file with timestamps,
+                            keeping the record simple, readable, and easy to audit.
+                        </p>
+                    </article>
+
+                    <article class="feature-card">
+                        <h3>Student management</h3>
+                        <p>
+                            A compact desktop GUI lets staff add or remove students and keep the
+                            student roster aligned with face image filenames.
+                        </p>
+                    </article>
+
+                    <article class="feature-card">
+                        <h3>Local-first setup</h3>
+                        <p>
+                            Student records, logs, and attendance files live in the project itself,
+                            which makes the app easy to inspect, test, and extend.
+                        </p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="section section-alt" id="workflow">
+                <div class="section-heading">
+                    <p class="eyebrow">Workflow</p>
+                    <h2>Three steps from roster to recorded attendance.</h2>
+                </div>
+
+                <div class="workflow-grid">
+                    <article class="workflow-card">
+                        <span class="step-number">01</span>
+                        <h3>Build the student roster</h3>
+                        <p>
+                            Add names, classes, and face image references through the GUI so the
+                            project has a roster to compare against.
+                        </p>
+                    </article>
+
+                    <article class="workflow-card">
+                        <span class="step-number">02</span>
+                        <h3>Run recognition</h3>
+                        <p>
+                            The webcam feed is scanned for faces, embeddings are generated, and each
+                            student match is checked against the attendance log for the day.
+                        </p>
+                    </article>
+
+                    <article class="workflow-card">
+                        <span class="step-number">03</span>
+                        <h3>Store the result</h3>
+                        <p>
+                            Present students are timestamped in the attendance file, while logs provide
+                            a clear trail for troubleshooting and future improvements.
+                        </p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="section" id="stack">
+                <div class="section-heading">
+                    <p class="eyebrow">Project stack</p>
+                    <h2>Small, inspectable pieces that work together.</h2>
+                </div>
+
+                <div class="stack-layout">
+                    <article class="stack-card">
+                        <h3>Tech choices</h3>
+                        <div class="tag-list">
+                            <span>Python</span>
+                            <span>CustomTkinter</span>
+                            <span>OpenCV</span>
+                            <span>DeepFace</span>
+                            <span>CSV storage</span>
+                            <span>Local logging</span>
+                        </div>
+                        <p class="stack-note">
+                            The current README recommends Python 3.12 because the face-recognition
+                            stack is not yet aligned with Python 3.14.
+                        </p>
+                    </article>
+
+                    <article class="stack-card stack-card-code">
+                        <h3>Important paths</h3>
+                        <ul class="code-list">
+                            <li><code>src/gui.pyw</code><span>GUI for adding and removing students</span></li>
+                            <li><code>src/recognize.py</code><span>Recognition loop and matching logic</span></li>
+                            <li><code>src/database.py</code><span>CSV reads, writes, and timestamps</span></li>
+                            <li><code>data/students.csv</code><span>Student roster storage</span></li>
+                            <li><code>data/attendance.csv</code><span>Attendance output</span></li>
+                        </ul>
+                    </article>
+                </div>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <p>SmartAttendance is designed as a practical local project for faster, more organized school attendance.</p>
+        </footer>
+    </div>
+</body>
+</html>
