@@ -1,4 +1,5 @@
 import sys
+import os
 from pathlib import Path
 from pyshortcuts import make_shortcut
 
@@ -21,21 +22,27 @@ links = {
 }
 
 def build_shortcuts():
-    Path.home().joinpath("Desktop").mkdir(parents=True, exist_ok=True)
+    desktop = Path.home() / "Desktop"
+    desktop.mkdir(parents=True, exist_ok=True)
 
     for name, target in links.items():
-        t_path = Path(target)
+        t_path = Path(target).resolve()
         
-        if t_path.exists():
-            if t_path.suffix in ['.py', '.pyw']:
-                cmd = f'"{sys.executable}" "{t_path}"'
-            else:
-                cmd = f'start "" "{t_path}"'
-
-            make_shortcut(cmd, name=name, terminal=False)
-            print(f"Created shortcut for {name}")
-        else:
+        if not t_path.exists():
             print(f"Warning: Target {t_path} not found. Skipping.")
+            continue
+
+        if t_path.suffix in ['.py', '.pyw']:
+            make_shortcut(str(t_path), name=name, terminal=False, executable=sys.executable)
+            print(f"Created script shortcut for {name}")
+        else:
+            if os.name == 'nt':
+                cmd = f'/c start "" "{t_path}"'
+                make_shortcut("cmd.exe", name=name, args=cmd, terminal=False)
+            else:
+                make_shortcut(str(t_path), name=name)
+            
+            print(f"Created file/folder shortcut for {name}")
 
 if __name__ == "__main__":
     build_shortcuts()
